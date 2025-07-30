@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pradee Kumar - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <style>
+        :root {
+            --background-light: #f7fafc;
+            --text-light: #2d3748;
+            --background-dark: #1a202c;
+            --text-dark: #e2e8f0;
+            --primary-color: #4f46e5;
+            --text-secondary-light: #a0aec0;
+            --text-secondary-dark: #718096;
+        }
+        .dark {
+            --background-light: #1a202c;
+            --text-light: #e2e8f0;
+            --text-secondary-light: #718096;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-light);
+            color: var(--text-light);
+            transition: background-color 0.3s, color 0.3s;
+            /* Added subtle gradient background to make the glass effect pop */
+            background-image: radial-gradient(circle at top left, rgba(79, 70, 229, 0.1), transparent 40%),
+                              radial-gradient(circle at bottom right, rgba(225, 70, 70, 0.1), transparent 50%);
+            background-attachment: fixed;
+        }
+        
+        /* --- Glassmorphism Effect --- */
+        
+        /* Header */
+        header {
+            background-color: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .dark header {
+            background-color: rgba(26, 32, 44, 0.5);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Cards */
+        .card {
+            background-color: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .dark .card {
+            background-color: rgba(45, 55, 72, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Theme Switcher Button */
+        #theme-toggle {
+            background-color: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .dark #theme-toggle {
+            background-color: rgba(45, 55, 72, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- End Glassmorphism Effect --- */
+
+        .text-secondary {
+            color: var(--text-secondary-light);
+        }
+        .dark .text-secondary {
+             color: var(--text-secondary-dark);
+        }
+        .theme-switcher {
+            position: fixed;
+            top: 50%;
+            left: 1rem;
+            transform: translateY(-50%);
+            z-index: 50;
+        }
+        .project-image-container {
+            overflow: hidden;
+            border-radius: 0.5rem;
+        }
+        .project-image {
+            transition: transform 0.5s ease-in-out, filter 0.5s ease-in-out;
+        }
+        .project-image-container:hover .project-image {
+            transform: scale(1.1);
+            filter: brightness(1.1);
+        }
+        .certificate-image {
+            aspect-ratio: 1179 / 820;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Theme Switcher -->
+    <div class="theme-switcher">
+        <button id="theme-toggle" class="p-3 rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-color">
+            <svg id="theme-icon-light" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+            <svg id="theme-icon-dark" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="sticky top-0 z-40 w-full flex-none transition-colors duration-500 lg:z-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-xl font-bold" style="color: var(--primary-color);">Pradeep Kumar</span>
+                </div>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="text-sm font-medium hover:text-primary-color transition-colors">About</a>
+                    <a href="#skills" class="text-sm font-medium hover:text-primary-color transition-colors">Skills</a>
+                    <a href="#projects" class="text-sm font-medium hover:text-primary-color transition-colors">Projects</a>
+                    <a href="#certificates" class="text-sm font-medium hover:text-primary-color transition-colors">Certificates</a>
+                    <a href="#contact" class="text-sm font-medium hover:text-primary-color transition-colors">Contact</a>
+                </nav>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="p-2 rounded-md focus:outline-none">
+                        <i data-feather="menu"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden card rounded-none">
+            <nav class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-200 dark:hover:bg-gray-700">About</a>
+                <a href="#skills" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-200 dark:hover:bg-gray-700">Skills</a>
+                <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-200 dark:hover:bg-gray-700">Projects</a>
+                <a href="#certificates" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-200 dark:hover:bg-gray-700">Certificates</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-200 dark:hover:bg-gray-700">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- About Section -->
+        <section id="about" class="min-h-screen flex items-center">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
+                <div class="md:col-span-1 flex justify-center">
+                    <img src="image copy.png" alt="Pradee Kumar" class="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover shadow-2xl border-8 border-white dark:border-gray-800">
+                </div>
+                <div class="md:col-span-2 text-center md:text-left">
+                    <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight">
+                        <span class="block">Hi, I'm</span>
+                        <span class="block" style="color: var(--primary-color);">Pradee Kumar</span>
+                    </h1>
+                    <p class="mt-6 max-w-2xl text-lg md:text-xl">
+                        A passionate and results-driven developer with expertise in Data Science, AI/ML, and Web Development. I enjoy turning complex problems into simple, beautiful, and intuitive solutions.
+                    </p>
+                    <div class="mt-8 flex justify-center md:justify-start">
+                        <a href="#" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white transition-transform transform hover:scale-105" style="background-color: var(--primary-color);">
+                            Download CV
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20">
+            <h2 class="text-3xl font-bold text-center mb-12">My Skills</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 text-center">
+                <!-- Skill Item -->
+                <div class="card p-6 rounded-lg shadow-lg flex flex-col items-center justify-center transform hover:-translate-y-2">
+                    <img src="https://www.vectorlogo.zone/logos/python/python-icon.svg" alt="Python" class="h-16 w-16 mb-2">
+                    <h3 class="font-semibold">Python</h3>
+                    <p class="text-sm text-secondary">Advanced</p>
+                </div>
+                <div class="card p-6 rounded-lg shadow-lg flex flex-col items-center justify-center transform hover:-translate-y-2">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C Programming" class="h-16 w-16 mb-2">
+                    <h3 class="font-semibold">C Programming</h3>
+                    <p class="text-sm text-secondary">Intermediate</p>
+                </div>
+                <div class="card p-6 rounded-lg shadow-lg flex flex-col items-center justify-center transform hover:-translate-y-2">
+                    <img src="https://www.svgrepo.com/show/303501/data-science-analytics-logo.svg" alt="Data Science" class="h-16 w-16 mb-2">
+                    <h3 class="font-semibold">Data Science</h3>
+                    <p class="text-sm text-secondary">Intermediate</p>
+                </div>
+                <div class="card p-6 rounded-lg shadow-lg flex flex-col items-center justify-center transform hover:-translate-y-2">
+                    <img src="https://www.vectorlogo.zone/logos/tensorflow/tensorflow-icon.svg" alt="AI/ML" class="h-16 w-16 mb-2">
+                    <h3 class="font-semibold">AI / ML</h3>
+                    <p class="text-sm text-secondary">Intermediate</p>
+                </div>
+                <div class="card p-6 rounded-lg shadow-lg flex flex-col items-center justify-center transform hover:-translate-y-2">
+                    <img src="https://www.vectorlogo.zone/logos/mysql/mysql-icon.svg" alt="DBMS" class="h-16 w-16 mb-2">
+                    <h3 class="font-semibold">DBMS - MySQL</h3>
+                    <p class="text-sm text-secondary">Advanced</p>
+                </div>
+                <div class="card p-6 rounded-lg shadow-lg flex flex-col items-center justify-center transform hover:-translate-y-2">
+                    <img src="https://www.vectorlogo.zone/logos/reactjs/reactjs-icon.svg" alt="Web Development" class="h-16 w-16 mb-2">
+                    <h3 class="font-semibold">Web Development</h3>
+                    <p class="text-sm text-secondary">Beginner</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20">
+            <h2 class="text-3xl font-bold text-center mb-12">Recent Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Project Card -->
+                <div class="card rounded-lg shadow-lg overflow-hidden group">
+                    <div class="project-image-container">
+                        <img src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?q=80&w=2072&auto=format&fit=crop" alt="Project 1" class="w-full h-56 object-cover project-image">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Project  added soon</h3>
+                        <p class="mb-4 text-secondary">A brief descript.</p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="flex-1 text-center py-2 px-4 rounded-md text-white transition-transform transform hover:scale-105" style="background-color: var(--primary-color);">Get Git</a>
+                            <a href="#" class="flex-1 text-center py-2 px-4 rounded-md border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors">Try It</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project Card -->
+                <div class="card rounded-lg shadow-lg overflow-hidden group">
+                     <div class="project-image-container">
+                        <img src="tracker.png" alt="Project 2" class="w-full h-56 object-cover project-image">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Study Tracker</h3>
+                        <p class="mb-4 text-secondary">A study tracker is a tool</p>
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/prdip01/traker" class="flex-1 text-center py-2 px-4 rounded-md text-white transition-transform transform hover:scale-105" style="background-color: var(--primary-color);">Get Git</a>
+                            <a href="https://mytraker.netlify.app/" class="flex-1 text-center py-2 px-4 rounded-md border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors">Try It</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project Card -->
+                <div class="card rounded-lg shadow-lg overflow-hidden group">
+                     <div class="project-image-container">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop" alt="Project 3" class="w-full h-56 object-cover project-image">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Added Soon</h3>
+                        <p class="mb-4 text-secondary">A brief description </p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="flex-1 text-center py-2 px-4 rounded-md text-white transition-transform transform hover:scale-105" style="background-color: var(--primary-color);">Get Git</a>
+                            <a href="#" class="flex-1 text-center py-2 px-4 rounded-md border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors">Try It</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certificates Section -->
+        <section id="certificates" class="py-20">
+            <h2 class="text-3xl font-bold text-center mb-12">Certifications</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Certificate Card -->
+                <div class="card rounded-lg shadow-lg overflow-hidden">
+                    <img src="c3.jpeg" alt="Certificate 1" class="w-full certificate-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Certificate in Web Development</h3>
+                        <p class="text-secondary">Certified in Web Development | Skilled in HTML, CSS, JavaScript, Git & Netlify</p>
+                    </div>
+                </div>
+                 <!-- Certificate Card -->
+                <div class="card rounded-lg shadow-lg overflow-hidden">
+                    <img src="cert2.jpeg" alt="Certificate 2" class="w-full certificate-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">DSAIML Specialization</h3>
+                        <p class="text-secondary">Gained hands-on experience with popular ALML frameworks like Scikit-learn and TensorFlow.</p>
+                    </div>
+                </div>
+                 <!-- Certificate Card -->
+                <div class="card rounded-lg shadow-lg overflow-hidden">
+                    <img src="cert1.jpeg" alt="Certificate 3" class="w-full certificate-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Organizer of Esports </h3>
+                        <p class="text-secondary">Awarded a certificate for outstanding contribution to the event organization.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 text-center">
+            <h2 class="text-3xl font-bold mb-4">Connect With Me</h2>
+            <p class="max-w-md mx-auto mb-8 text-secondary">I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.</p>
+            <div class="flex justify-center space-x-6">
+                <a href="https://github.com/prdip01" class="hover:text-primary-color transition-colors transform hover:scale-110"><i data-feather="github" class="w-8 h-8"></i></a>
+                <a href="https://www.linkedin.com/in/pradeep-kumar-53a9502a6?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" class="hover:text-primary-color transition-colors transform hover:scale-110"><i data-feather="linkedin" class="w-8 h-8"></i></a>
+                <a href="https://x.com/pradeepk27083?s=21" class="hover:text-primary-color transition-colors transform hover:scale-110"><i data-feather="twitter" class="w-8 h-8"></i></a>
+                <a href="iamprdip160@gmail.com" class="hover:text-primary-color transition-colors transform hover:scale-110"><i data-feather="mail" class="w-8 h-8"></i></a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-200 dark:border-gray-800">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center text-sm text-secondary">
+            <p>&copy; 2025 Pradee Kumar. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Feather Icons
+        feather.replace();
+
+        // Theme Switcher
+        const themeToggle = document.getElementById('theme-toggle');
+        const lightIcon = document.getElementById('theme-icon-light');
+        const darkIcon = document.getElementById('theme-icon-dark');
+        const htmlEl = document.documentElement;
+
+        // Check for saved theme in localStorage and apply it
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            htmlEl.classList.add('dark');
+            lightIcon.classList.add('hidden');
+            darkIcon.classList.remove('hidden');
+        } else {
+            lightIcon.classList.remove('hidden');
+            darkIcon.classList.add('hidden');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            htmlEl.classList.toggle('dark');
+            const isDark = htmlEl.classList.contains('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            lightIcon.classList.toggle('hidden', isDark);
+            darkIcon.classList.toggle('hidden', !isDark);
+        });
+
+        // Mobile Menu
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when a link is clicked
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+    </script>
+</body>
+</html>
